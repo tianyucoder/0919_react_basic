@@ -5,6 +5,7 @@
   <title>虚拟DOM的两种创建方式</title>
 </head>
 <body>
+	<div id="demo">虚拟DOM的两种创建方式</div>
   <div id="test1"></div>
   <div id="test2"></div>
 
@@ -34,11 +35,23 @@
 				<span style={{color:"red"}}>
 					{myData.toUpperCase()}
 				</span>
+				<input type="text"/>
 			</h2>
 		)
+		let demo = document.getElementById('demo')
+		console.log(typeof vDOM2);
 		//2.渲染虚拟DOM到页面
 		ReactDOM.render(vDOM2,document.getElementById('test2'))
 	</script>
+
+	<!-- 
+		虚拟DOM 与 真实DOM的区别 :
+				1.虚拟DOM“轻”，真实DOM“重”
+				2.虚拟DOM的本质:就是一个Object类型的js对象
+				3.虚拟DOM最终一定会转换为真实DOM，进而展示到页面中
+		注意点：
+				1.jsx里的标签，不是html标签，但是他与html标签一一对应
+	-->
 
 </body>
 </html>
