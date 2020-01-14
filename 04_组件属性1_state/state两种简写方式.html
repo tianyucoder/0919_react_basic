@@ -26,17 +26,19 @@
 	//1.定义组件
 	class Weather extends React.Component{
 		state = {isHot:true,persons:[]}
+		//以后在类中的自定义方法，都写成箭头函数，解决this指向问题
 		changeWeather = ()=>{
 			//组件实例对象的state属性不可以直接修改，如下这行代码就是在直接修改
-			//this.state.isHot = isHot
+			//this.state.isHot = isHot //这是错误的写法
 			let isHot = !this.state.isHot
 			//通过组件的实例对象调用setSate()方法去更改state
 			this.setState({isHot:isHot})//这里的更新状态是“合并”操作
 		}
 		//重写父类的render
 		render(){
-			console.log('我时render，我被调用了'); //render方法调用的次数？1+n 1是初始化显示，n更改state的次数
-			//console.log(this);//此处this是组件类的实例对象
+			//render方法调用的次数？1+n 1是初始化显示，n更改state的次数
+			console.log('我时render，我被调用了'); 
+			//console.log(this);//此处this是组件类的实例对象，因为render是内置的，无this指向问题。
 			return <h2 onClick={this.changeWeather}>今天天气很{this.state.isHot? '炎热':'凉爽'}</h2>
 		}
 	}

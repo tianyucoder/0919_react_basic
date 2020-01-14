@@ -9,8 +9,11 @@
 <div id="example1"></div>
 <div id="example2"></div>
 
+<!-- 引入react核心库 -->
 <script type="text/javascript" src="../js/react.development.js"></script>
+<!-- 引入react-dom，专门用于支持react操作DOM -->
 <script type="text/javascript" src="../js/react-dom.development.js"></script>
+<!-- 引入babel，用于将jsx转为js -->
 <script type="text/javascript" src="../js/babel.min.js"></script>
 
 <script type="text/babel">
@@ -24,6 +27,7 @@
 
 	class Person extends React.Component{
 		render(){
+			//解构复制从props上获取所有传递过来的属性
 		  const {name,age,sex,price,phone,address,car} = this.props
 			return (
 				<ul>
@@ -40,6 +44,7 @@
 		}
 	}
 
+	//准备一个人的数据
 	let p1 = {
 		name:'小猪佩奇',
 		age:6,
@@ -53,9 +58,10 @@
 	//渲染标签时，传递标签属性
 	//ReactDOM.render(<Person name="kobe" age={18} sex="男"/>,document.getElementById('example1'))
 	//ReactDOM.render(<Person name="wade" age={19} sex="男"/>,document.getElementById('example2'))
-	
-	//渲染标签时，传递标签属性----简写方式
-	ReactDOM.render(<Person {...p1}/>,document.getElementById('example1'))//babel+react环境可以让对象使用三点运算符展开
+
+	//渲染标签时，传递标签属性----简写方式（使用三点运算符展开一个对象）
+	//特别注意：babel+react环境可以让对象使用三点运算符展开，但仅限标签批量传递属性时使用！！！
+	ReactDOM.render(<Person {...p1}/>,document.getElementById('example1'))
 
 </script>
 </body>
