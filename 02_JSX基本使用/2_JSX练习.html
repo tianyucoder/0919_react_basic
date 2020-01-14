@@ -31,8 +31,6 @@
 <!-- 引入babel，用于将jsx转为js -->
 <script type="text/javascript" src="../js/babel.min.js"></script>
 
-
-
 <script type="text/babel">
 	//模拟一些数据
 	let arr = ['Angular','React','Vue','jQuery']
@@ -44,8 +42,8 @@
 			<h2>前端技术栈</h2>
 			<ul>
 				{
-					// 表达式：将数据的数组，加工生成标签的数组（加工数组
-					// 使用便利时候的index作为key是有一些问题的（后续会详细讲解）
+					// 表达式：将数据的数组，加工生成标签的数组（加工数组）
+					// 遍历时候的index作为key是有一些问题的（后续会详细讲解）
 				}
 				{arr.map((item,index) => <li key={index}>{item}</li>)}
 			</ul>
