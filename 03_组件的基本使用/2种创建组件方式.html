@@ -24,8 +24,11 @@
 		console.log(this);//此处的this是undefined，因为这里的代码经过babel编译后，开启了严格模式。
 		return <h2>我是用工厂函数定义的组件（简单组件的定义用我）</h2>
 	}
-	
-	//如下代码会做这些事情：1.寻找程序员是否定义了MyComponent组件 2.React底层调用与组件标签同名的那个工厂函数
+	/* 
+		如下代码会做这些事情：
+				1.寻找程序员定义的MyComponent组件 
+				2.React底层调用与组件标签同名的那个工厂函数
+	*/
 	ReactDOM.render(<MyComponent/>,document.getElementById('example1'))
 
 	/* 第二种定义组件的方式：使用ES6类的方式 */
@@ -36,10 +39,9 @@
 			return <h2>我是用ES6类的形式定义的组件（复杂组件的定义用我）</h2>
 		}
 	}
-
 	/* 
 		如下代码会做这些事情:
-			1.寻找程序员是否定义了MyComponent2组件 
+			1.寻找程序员定义的MyComponent2组件 
 			2.React底层创建了一个MyComponent2的实例
 			3.使用上一步创建的实例，调用到了render
 	*/
