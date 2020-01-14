@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>2种创建组件方式</title>
+</head>
+<body>
+
+  <div id="example1"></div>
+	<div id="example2"></div>
+	<h2>简单组件无状态，复杂组件有状态</h2>
+
+	<!-- 引入react核心库 -->
+	<script type="text/javascript" src="../js/react.development.js"></script>
+	<!-- 引入react-dom，专门用于支持react操作DOM -->
+	<script type="text/javascript" src="../js/react-dom.development.js"></script>
+	<!-- 引入babel，用于将jsx转为js -->
+	<script type="text/javascript" src="../js/babel.min.js"></script>
+
+	<script type="text/babel">
+	
+	/* 第一种定义组件的方式：使用工厂函数定义 */
+	function MyComponent(){
+		console.log(this);//此处的this是undefined，因为这里的代码经过babel编译后，开启了严格模式。
+		return <h2>我是用工厂函数定义的组件（简单组件的定义用我）</h2>
+	}
+	
+	//如下代码会做这些事情：1.寻找程序员是否定义了MyComponent组件 2.React底层调用与组件标签同名的那个工厂函数
+	ReactDOM.render(<MyComponent/>,document.getElementById('example1'))
+
+	/* 第二种定义组件的方式：使用ES6类的方式 */
+	class MyComponent2 extends React.Component{
+		//重写从父类继承的render
+		render(){
+			console.log(this);//此处的this是组件类的实例对象
+			return <h2>我是用ES6类的形式定义的组件（复杂组件的定义用我）</h2>
+		}
+	}
+
+	/* 
+		如下代码会做这些事情:
+			1.寻找程序员是否定义了MyComponent2组件 
+			2.React底层创建了一个MyComponent2的实例
+			3.使用上一步创建的实例，调用到了render
+	*/
+	ReactDOM.render(<MyComponent2/>,document.getElementById('example2'))
+
+  </script>
+</body>
+</html>
