@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+<body>
+
+	<script type="text/javascript" >
+		/* class Person {
+			constructor(name,age,sex){
+				this.name = name
+				this.age = age
+				this.sex = sex
+			}
+			speak (){
+				console.log('我说话了');
+			}
+		}
+
+	class Student extends Person{
+		constructor(name,age,sex){
+			super(name,age,sex)
+		}
+		//重写从父类集成过来的方法
+		speak(){
+			console.log(this);
+			console.log('我说话了,我是一个学生');
+		}
+		demo(){
+			console.log(this);
+		}
+	}
+
+	let s1 = new Student('kobe',18,'男')
+	console.log(s1);
+	s1.speak() */
+
+	/* function demo (){
+		console.log('我是demo函数，我被调用了，我的this指向是：',this);
+	}
+	let a = demo.bind({n:1})
+	console.log(a === demo); */
+
+	//类里面能写什么代码？ 构造器、定义方法（定义在原型上，给实例用）、赋值语句
+/* 	class Dog {
+		constructor(name){
+			this.name = name
+		}
+		run(){
+			console.log('我奔跑了');
+		}
+		a = 1 //实例自身上
+		b = ()=>{console.log('我是b');}//实例自身上
+		c = {m:1,n:2}//实例自身上
+		run = ()=>{console.log('我奔跑了222222222');}
+	}
+
+	let d = new Dog('旺财')
+	console.log(d);
+	d.run() */
+
+	let arr = [1,3,5,7,9,{n:1,m:2}]
+	let obj = {a:1,b:2,c:3,d:{x:1,y:2}}
+
+	//1.三点运算符，展开一个数组，不能展开对象，因为Object原型上没有iterator遍历器
+	//console.log(...arr);
+	//console.log(...obj);//报错
+
+	//连接两个数组
+	let arr2 =['a','b','c',...arr]
+	//console.log(arr2);
+
+	//复制一个数组----浅复制
+	let arr3 = [...arr]
+	//console.log(arr === arr3); 
+	//console.log(arr[5] === arr3[5]); //true浅复制
+
+	//统一接收参数
+	function demo(...data){
+		console.log(data);
+	}
+	demo(1,2,3,3,4,5,6,7)
+
+	//三点预算符+{}能复制一个对象-----------ES8的新语法
+	let obj2 = {...obj}//复制了一份obj，赋值给了obj2，深复制，浅复制
+	console.log(obj2);
+	console.log(obj.d === obj2.d);//true浅
+
+	</script>
+
+
+</body>
+</html>

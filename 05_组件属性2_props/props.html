@@ -50,8 +50,11 @@
 		car:'阿特兹'
 	}
 
+	//渲染标签时，传递标签属性
 	//ReactDOM.render(<Person name="kobe" age={18} sex="男"/>,document.getElementById('example1'))
 	//ReactDOM.render(<Person name="wade" age={19} sex="男"/>,document.getElementById('example2'))
+	
+	//渲染标签时，传递标签属性----简写方式
 	ReactDOM.render(<Person {...p1}/>,document.getElementById('example1'))//babel+react环境可以让对象使用三点运算符展开
 
 </script>
