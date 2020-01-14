@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>state</title>
+</head>
+<body>
+
+<div id="example"></div>
+
+<!-- 引入react核心库 -->
+<script type="text/javascript" src="../js/react.development.js"></script>
+<!-- 引入react-dom，专门用于支持react操作DOM -->
+<script type="text/javascript" src="../js/react-dom.development.js"></script>
+<!-- 引入babel，用于将jsx转为js -->
+<script type="text/javascript" src="../js/babel.min.js"></script>
+
+<script type="text/babel">
+  /*
+  需求: 自定义组件, 功能如下：
+    1. 显示h2标题, 初始文本为: 今天天气很炎热
+    2. 点击标题更新为: 今天天气很凉爽
+  */
+
+	//1.定义组件
+	class Weather extends React.Component{
+		constructor(){
+			super()
+			this.state = {isHot:false}
+			this.demo = this.demo.bind(this) //?
+		}
+		//自定义一个demo
+		demo(){
+			//此处this是undefined,因为React底层将所有程序员自己定义的方法中的this全部改为了undefined
+			console.log(this);
+		}
+		//重写父类的render
+		render(){
+			console.log(this);//此处this是组件类的实例对象
+			return <h2 onClick={this.demo}>今天天气很{this.state.isHot? '炎热':'凉爽'}</h2>
+		}
+	}
+
+	//2.渲染组件
+	ReactDOM.render(<Weather/>,document.getElementById('example'))
+  
+</script>
+</body>
+</html>
+
