@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>props</title>
+</head>
+<body>
+
+<div id="example1"></div>
+<div id="example2"></div>
+
+<script type="text/javascript" src="../js/react.development.js"></script>
+<script type="text/javascript" src="../js/react-dom.development.js"></script>
+<script type="text/javascript" src="../js/babel.min.js"></script>
+
+<script type="text/babel">
+
+  /*
+   需求: 自定义用来显示一个人员信息的组件，包含：姓名、年龄、性别三个信息
+      1). 姓名须为字符串类型，且是必要信息
+      2). 性别必须为字符串类型，且是必要信息
+      3). 年龄必须为数字类型，默认为18
+  */
+
+	class Person extends React.Component{
+		render(){
+		  const {name,age,sex,price,phone,address,car} = this.props
+			return (
+				<ul>
+					<li>姓名：{name}</li>
+					<li>年龄：{age+1}</li>
+					<li>性别：{sex}</li>
+					<li>价格：{price}</li>
+					<li>电话：{phone}</li>
+					<li>地址：{address}</li>
+					<li>座驾：{car}</li>
+					<hr/>
+				</ul>
+			)
+		}
+	}
+
+	let p1 = {
+		name:'小猪佩奇',
+		age:6,
+		sex:'男',
+		price:'￥12/斤',
+		phone:'1388888888',
+		address:'北七家镇宏福科技园',
+		car:'阿特兹'
+	}
+
+	//ReactDOM.render(<Person name="kobe" age={18} sex="男"/>,document.getElementById('example1'))
+	//ReactDOM.render(<Person name="wade" age={19} sex="男"/>,document.getElementById('example2'))
+	ReactDOM.render(<Person {...p1}/>,document.getElementById('example1'))//babel+react环境可以让对象使用三点运算符展开
+
+</script>
+</body>
+</html>
+
