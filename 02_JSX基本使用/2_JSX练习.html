@@ -5,8 +5,7 @@
   <title>JSX练习</title>
 </head>
 <body>
-  <h2>前端技术栈</h2>
-  <div id="example1"></div>
+	<div id="example1"></div>
   
   <!--
       注意区分：【js语句】 与 【js表达式】:
@@ -14,11 +13,12 @@
           举例：a
                3 + b
                demo("a", "b")
-               arr.map()
+							 arr.map()
+							 function foo() {}
                .....
-        2.语句：语句可以理解成一个行为.循环语句、if语句，都是典型的语句
+				2.语句：语句可以理解成一个行为例如：循环语句、if判断语句，都是典型的语句
+								更改代码的走向
           举例：
-               function foo() {}-----属于表达式
                if(){}
                for(){}
                ......
@@ -30,6 +30,32 @@
 <script type="text/javascript" src="../js/react-dom.development.js"></script>
 <!-- 引入babel，用于将jsx转为js -->
 <script type="text/javascript" src="../js/babel.min.js"></script>
+
+
+
+<script type="text/babel">
+	//模拟一些数据
+	let arr = ['Angular','React','Vue','jQuery']
+	//let arr = [<li>Angular1</li>,<li>Angular2</li>,<li>Angular3</li>,<li>Angular4</li>]
+
+	//创建虚拟DOM
+	let vDOM = (
+		<div>
+			<h2>前端技术栈</h2>
+			<ul>
+				{
+					// 表达式：将数据的数组，加工生成标签的数组（加工数组
+					// 使用便利时候的index作为key是有一些问题的（后续会详细讲解）
+				}
+				{arr.map((item,index) => <li key={index}>{item}</li>)}
+			</ul>
+		</div>
+	)
+	//渲染虚拟DOM
+	ReactDOM.render(vDOM,document.getElementById('example1'))
+
+</script>
+
 
 </body>
 </html>
