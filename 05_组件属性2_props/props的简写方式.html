@@ -28,6 +28,16 @@
   */
 
 	class Person extends React.Component{
+		//新的写法如下：
+		static propTypes = {
+			name:PropTypes.string.isRequired,
+			sex:PropTypes.string.isRequired
+		} 
+		//设置属性的默认值
+		static defaultProps = {
+			age:90
+		}
+		
 		render(){
 			//解构复制从props上获取所有传递过来的属性
 		  //const {name,age,sex,price,phone,address,car} = this.props
@@ -53,16 +63,6 @@
 		name: React.PropTypes.string.isRequired,
 		sex: React.PropTypes.string.isRequired
 	} */
-
-	//新的写法如下：
-	Person.propTypes = {
-		name:PropTypes.string.isRequired,
-		sex:PropTypes.string.isRequired
-	} 
-	//设置属性的默认值
-	Person.defaultProps = {
-		age:90
-	}
 
 	//准备一个人的数据
 	let p1 = {
