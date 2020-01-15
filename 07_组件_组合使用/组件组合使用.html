@@ -71,6 +71,9 @@
 		}
 
 		class List extends React.Component{
+			componentWillReceiveProps(){
+				console.log('---componentWillReceiveProps---');
+			}
 			render(){
 				const {todos} = this.props
 				return (

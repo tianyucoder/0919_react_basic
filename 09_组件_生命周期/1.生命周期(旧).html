@@ -18,45 +18,97 @@
 
 	class App extends React.Component{
 
+		/* 
+			生命周期流程(旧):
+					a.	初始化阶段:  由ReactDOM.render()触发
+								* constructor()
+								* componentWillMount()
+								* render()
+								* componentDidMount()
+					b.	更新阶段：由组件内部this.setSate()或父组件重新render触发（还有调用forceUpdate）
+								* shouldComponentUpdate() ----- 强制更新不会调用这个钩子
+								* componentWillUpdate()
+								* render()
+								* componentDidUpdate()
+					c.	卸载组件: 由ReactDOM.unmountComponentAtNode(containerDom)触发
+								* componentWillUnmount()
+			三个最重要的钩子：
+					1.componentDidMount() --- 1.开启定时器、2.发送ajax请求获取数据 3.订阅消息 等等初始化操作
+					2.componentWillUnmount() --- 1.关闭定时器、2.关闭一些连接(数据库、与服务器的长连接) 等等收尾操作
+		 */
+
+		constructor(){
+			super()
+			console.log('---constructor---');
+		}
+
 		state = {opacity:1}
+
+		force = ()=>{
+			//强制更新--不管状态是否发生变化
+			this.forceUpdate()
+		}
 
 		death = ()=>{
 			//卸载组件
 			ReactDOM.unmountComponentAtNode(document.getElementById('example'))
 		}
 
+		//组件将要更新
+		componentWillUpdate(){
+			console.log('---componentWillUpdate---');
+		}
+		//控制组件是否更新
+		shouldComponentUpdate(){
+			console.log('---shouldComponentUpdate---');
+			return false
+		}
+		//组件已经更新
+		componentDidUpdate(){
+			console.log('---componentDidUpdate---');
+		}
+		//组件将要挂在
+		componentWillMount(){
+			console.log('---componentWillMount---');
+		}
+		//组件将要接收【新】的props
+		componentWillReceiveProps(){
+			console.log('---componentWillReceiveProps---');
+		}
 		//重写从父类集成过来的componentWillUnmount
-		//一个组件即将要卸载之前，React底层会帮我们调用componentWillUnmount
+		//一个组件要卸载之前，React底层会帮我们调用componentWillUnmount
 		componentWillUnmount(){
+			console.log('---componentWillUnmount---');
 			//清除定时器
 			clearInterval(this.id)
 		}
-
 		//调用次数：1 ----> 一旦组件被挂在到页面上，React底层帮我们调用componentDidMount
 		//重写从父类集成过来的componentDidMount
 		componentDidMount(){
-			console.log('---组件已经被成功的挂在到页面上了---');
-			this.id = setInterval(() => {
+			console.log('---componentDidMount---');
+			/* this.id = setInterval(() => {
 				let {opacity} = this.state
 				opacity -= 0.1
 				if(opacity <= 0) opacity = 1
 				this.setState({opacity})
-			}, 200);
+			}, 200); */
 		}
-
+		//最核心的render
 		render(){ //调用次数：1+n
+			console.log('---render---');
 			const {opacity} = this.state
 			return(
 				<div>
-					<h2 style={{opacity}}>React学不会怎么办？</h2>
+					<h2 style={{opacity}}>React学不会怎么办？{this.props.name}</h2>
 					<button onClick={this.death}>不活了</button>
+					<button onClick={this.force}>强制更新一下</button>
 				</div>
 			)
 		}
 	}
 
 
-	ReactDOM.render(<App/>,document.getElementById('example'))
+	ReactDOM.render(<App name="KOBE"/>,document.getElementById('example'))
 
 </script>
 </body>
