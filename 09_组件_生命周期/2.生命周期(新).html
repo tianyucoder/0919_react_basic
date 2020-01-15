@@ -17,6 +17,24 @@
 <script type="text/babel">
 
 class App extends React.Component{
+
+	/* 
+		生命周期流程(新):
+				a.	初始化阶段:  由ReactDOM.render()触发
+							* constructor()
+							* static getDerivedStateFromProps() 
+							* render()
+							* componentDidMount()
+				b.	更新阶段 由组件内部this.setSate()或父组件重新render触发
+							* static getDerivedStateFromProps()
+							* shouldComponentUpdate()
+							* render()
+							* getSnapshotBeforeUpdate()
+							* componentDidUpdate()
+				c.	移除组件:  由ReactDOM.unmountComponentAtNode(containerDom)触发
+							* componentWillUnmount()
+	*/
+
 	constructor(){
 		super()
 		console.log('---constructor---');
