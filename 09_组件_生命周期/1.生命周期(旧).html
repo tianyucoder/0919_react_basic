@@ -16,6 +16,47 @@
 
 <script type="text/babel">
 
+	class App extends React.Component{
+
+		state = {opacity:1}
+
+		death = ()=>{
+			//卸载组件
+			ReactDOM.unmountComponentAtNode(document.getElementById('example'))
+		}
+
+		//重写从父类集成过来的componentWillUnmount
+		//一个组件即将要卸载之前，React底层会帮我们调用componentWillUnmount
+		componentWillUnmount(){
+			//清除定时器
+			clearInterval(this.id)
+		}
+
+		//调用次数：1 ----> 一旦组件被挂在到页面上，React底层帮我们调用componentDidMount
+		//重写从父类集成过来的componentDidMount
+		componentDidMount(){
+			console.log('---组件已经被成功的挂在到页面上了---');
+			this.id = setInterval(() => {
+				let {opacity} = this.state
+				opacity -= 0.1
+				if(opacity <= 0) opacity = 1
+				this.setState({opacity})
+			}, 200);
+		}
+
+		render(){ //调用次数：1+n
+			const {opacity} = this.state
+			return(
+				<div>
+					<h2 style={{opacity}}>React学不会怎么办？</h2>
+					<button onClick={this.death}>不活了</button>
+				</div>
+			)
+		}
+	}
+
+
+	ReactDOM.render(<App/>,document.getElementById('example'))
 
 </script>
 </body>

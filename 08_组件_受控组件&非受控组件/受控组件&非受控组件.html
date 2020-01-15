@@ -21,6 +21,31 @@
     2. 输入用户名密码后, 点击登陆提示输入信息
     3. 不提交表单
   */
+  class Login extends React.Component{
+
+		state = {password:''}
+
+		demo = (event)=>{
+			event.preventDefault()//阻止表单提交的默认事件
+			alert(`用户名是：${this.username.value}，密码是：${this.state.password}`)
+		}
+
+		demo2 = (event)=>{
+			this.setState({password:event.target.value})
+		}
+
+		render(){
+			return (
+				<form onSubmit={this.demo}>
+					用户名：<input type="text" ref={(username)=>{this.username = username}}/>&nbsp;
+					密码：<input type="password" onChange={this.demo2}/>&nbsp;
+					<button>登录</button>
+				</form>
+			)
+		}
+	}
+
+	ReactDOM.render(<Login/>,document.getElementById('example'))
 	
 </script>
 </body>
