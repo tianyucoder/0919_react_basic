@@ -61,7 +61,7 @@
 		//控制组件是否更新
 		shouldComponentUpdate(){
 			console.log('---shouldComponentUpdate---');
-			return false
+			return true
 		}
 		//组件已经更新
 		componentDidUpdate(){
@@ -86,12 +86,12 @@
 		//重写从父类集成过来的componentDidMount
 		componentDidMount(){
 			console.log('---componentDidMount---');
-			/* this.id = setInterval(() => {
+			this.id = setInterval(() => {
 				let {opacity} = this.state
 				opacity -= 0.1
 				if(opacity <= 0) opacity = 1
 				this.setState({opacity})
-			}, 200); */
+			}, 200);
 		}
 		//最核心的render
 		render(){ //调用次数：1+n

@@ -16,6 +16,50 @@
 
 <script type="text/babel">
 
+class App extends React.Component{
+	constructor(){
+		super()
+		console.log('---constructor---');
+		this.state = {name:'kobe'}
+	}	
+
+	/* static getDerivedStateFromProps(props,state){
+		console.log('---getDerivedStateFromProps---',props,state);
+		// 如下代码return的规则：
+		// 		1.返回的是null，不会改变state
+		// 		2.返回的是对象，将该对象合并到state中
+		return null
+	} */
+
+	getSnapshotBeforeUpdate(prevProps, prevState){
+		console.log('---getSnapShotBeforeUpdate---',prevProps, prevState);
+		return {che:'阿特兹'}
+	}
+
+	componentDidUpdate(props,state,Snapshot){
+		console.log('---componentDidUpdate---',props,state,Snapshot);
+	}
+
+	componentDidMount(){
+		console.log('---componentDidMount---');
+	}
+
+	demo = ()=>{
+		this.setState({name:'peiqi'})
+	}
+
+	render(){
+		console.log('---render---');
+		return (
+			<div>
+				<h1>App,{this.state.name}</h1>
+				<button onClick={this.demo}>点我改状态</button>
+			</div>
+		)
+	}
+}
+ReactDOM.render(<App car="阿特兹"/>,document.getElementById('example'))
+
 </script>
 
 </body>
